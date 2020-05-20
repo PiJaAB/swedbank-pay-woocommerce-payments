@@ -10,7 +10,7 @@ class WC_Payment_Token_Swedbank_Pay extends WC_Payment_Token_CC {
 	 *
 	 * @var string
 	 */
-	protected $type = 'Swedbank';
+	protected $type = 'Swedbank_Pay';
 
 	/**
 	 * Stores Credit Card payment token data.
@@ -39,7 +39,6 @@ class WC_Payment_Token_Swedbank_Pay extends WC_Payment_Token_CC {
 		<img src="<?php echo WC_HTTPS::force_https_url( WC()->plugin_url() . '/assets/images/icons/credit-cards/' . $this->get_card_type() . '.png' ) ?>"
 			 alt="<?php echo wc_get_credit_card_type_label( $this->get_card_type() ); ?>"/>
 		<?php echo esc_html( $this->get_meta( 'masked_pan' ) ); ?>
-		<?php echo esc_html( $this->get_expiry_month() . '/' . substr( $this->get_expiry_year(), 2 ) ); ?>
 
 		<?php
 		$display = ob_get_contents();
@@ -147,7 +146,7 @@ class WC_Payment_Token_Swedbank_Pay extends WC_Payment_Token_CC {
 	 * @return array                           Filtered item.
 	 */
 	public static function wc_get_account_saved_payment_methods_list_item( $item, $payment_token ) {
-		if ( 'swedbank' !== strtolower( $payment_token->get_type() ) || 'payex' !== strtolower( $payment_token->get_type() ) ) {
+		if ( 'swedbank_pay' !== strtolower( $payment_token->get_type() ) && 'payex' !== strtolower( $payment_token->get_type() ) ) {
 			return $item;
 		}
 

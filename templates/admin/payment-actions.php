@@ -16,8 +16,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<br />
 	<strong><?php _e( 'Instrument', WC_Swedbank_Pay::TEXT_DOMAIN ) ?>: </strong> <?php echo esc_html( $info['payment']['instrument'] ); ?>
 	<br />
-	<strong><?php _e( 'Intent', WC_Swedbank_Pay::TEXT_DOMAIN ) ?>: </strong> <?php echo esc_html( $info['payment']['intent'] ); ?>
+	<strong><?php _e( 'Operation', WC_Swedbank_Pay::TEXT_DOMAIN ) ?>: </strong> <?php echo esc_html( $info['payment']['operation'] ); ?>
 	<br />
+	<?php if ( isset($info['payment']['intent']) ): ?>
+		<strong><?php _e( 'Intent', WC_Swedbank_Pay::TEXT_DOMAIN ) ?>: </strong> <?php echo esc_html( $info['payment']['intent'] ); ?>
+		<br />
+	<?php endif; ?>
 	<strong><?php _e( 'State', WC_Swedbank_Pay::TEXT_DOMAIN ) ?>: </strong> <?php echo esc_html( $info['payment']['state'] ); ?>
 	<br />
 	<?php if ( isset($info['payment']['remainingCaptureAmount']) && (float) $info['payment']['remainingCaptureAmount'] > 0.1 ): ?>

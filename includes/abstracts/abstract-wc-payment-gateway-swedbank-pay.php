@@ -559,7 +559,6 @@ abstract class WC_Payment_Gateway_Swedbank_Pay extends WC_Payment_Gateway
 	public function process_transaction( $transaction, $order ) {
 		// Disable status change hook
 		remove_action( 'woocommerce_order_status_changed', 'WC_Swedbank_Pay::order_status_changed', 10 );
-
 		try {
 			// Apply action
 			switch ( $transaction['type'] ) {
@@ -641,6 +640,85 @@ abstract class WC_Payment_Gateway_Swedbank_Pay extends WC_Payment_Gateway
 							$order->add_payment_token( $token );
 						}
 					}
+					break;
+				case 'Verification':
+					// Check is action was performed
+					if ( $order->get_meta( '_payex_payment_state' ) === 'Verified' ) {
+						throw new Exception( sprintf( 'Action of Transaction #%s already performed', $transaction['number'] ) );
+					}
+
+					if ( $transaction['state'] === 'Failed' ) {
+						$order->update_meta_data( '_transaction_id', $transaction['number'] );
+						$order->save_meta_data();
+
+						$reason = implode( '; ', [
+							$transaction['failedReason'],
+							$transaction['failedErrorCode'],
+							$transaction['failedErrorDescription']
+						] );
+						$order->update_status( 'failed', sprintf( __( 'Transaction failed. Reason: %s.', WC_Swedbank_Pay::TEXT_DOMAIN ), $reason ) );
+						break;
+					}
+
+					if ( $transaction['state'] === 'Pending' ) {
+						$order->update_meta_data( '_transaction_id', $transaction['number'] );
+						$order->save_meta_data();
+						$order->update_status( 'on-hold', __( 'Transaction pending.', WC_Swedbank_Pay::TEXT_DOMAIN ) );
+						break;
+					}
+
+					$order->update_meta_data( '_payex_payment_state', 'Verified' );
+					$order->update_meta_data( '_payex_transaction_authorize', $transaction['id'] );
+					$order->update_meta_data( '_transaction_id', $transaction['number'] );
+					$order->save_meta_data();
+
+					// Reduce stock
+					$order_stock_reduced = $order->get_meta( '_order_stock_reduced' );
+					if ( ! $order_stock_reduced ) {
+						wc_reduce_stock_levels( $order->get_id() );
+					}
+
+					// Save Payment Token
+					if ( $order->get_meta( '_payex_generate_token' ) === '1' &&
+						 count( $order->get_payment_tokens() ) === 0
+					) {
+						$payment_id = $order->get_meta( '_payex_payment_id' );
+						$result     = $this->request( 'GET', $payment_id . '/authorizations' );
+						if ( isset( $result['authorizations']['authorizationList'][0] ) &&
+							 (
+								 ! empty( $result['authorizations']['authorizationList'][0]['paymentToken'] ) ||
+								 ! empty( $result['authorizations']['authorizationList'][0]['recurrenceToken'] )
+							 )
+						) {
+							$authorization   = $result['authorizations']['authorizationList'][0];
+							$paymentToken    = isset( $authorization['paymentToken'] ) ? $authorization['paymentToken'] : '';
+							$recurrenceToken = isset( $authorization['recurrenceToken'] ) ? $authorization['recurrenceToken'] : '';
+							$cardBrand       = $authorization['cardBrand'];
+							$maskedPan       = $authorization['maskedPan'];
+							$expiryDate      = explode( '/', $authorization['expiryDate'] );
+
+							// Create Payment Token
+							$token = new WC_Payment_Token_Swedbank_Pay();
+							$token->set_gateway_id( $this->id );
+							$token->set_token( $paymentToken );
+							$token->set_recurrence_token( $recurrenceToken );
+							$token->set_last4( substr( $maskedPan, - 4 ) );
+							$token->set_expiry_year( $expiryDate[1] );
+							$token->set_expiry_month( $expiryDate[0] );
+							$token->set_card_type( strtolower( $cardBrand ) );
+							$token->set_user_id( $order->get_user_id() );
+							$token->set_masked_pan( $maskedPan );
+							$token->save();
+							if ( ! $token->get_id() ) {
+								throw new Exception( __( 'There was a problem adding the card.', WC_Swedbank_Pay::TEXT_DOMAIN ) );
+							}
+
+							// Add payment token
+							$order->add_payment_token( $token );
+						}
+					}
+
+					$order->payment_complete( $transaction['number'] );
 					break;
 				case 'Capture':
 				case 'Sale':

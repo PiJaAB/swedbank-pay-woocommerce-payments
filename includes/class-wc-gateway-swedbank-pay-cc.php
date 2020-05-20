@@ -299,18 +299,38 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway_Swedbank_Pay
 					?>
 					<script type="application/javascript">
 						(function ($) {
-							$(document).ready(function () {
-								$('input[name="wc-payex_psp_cc-new-payment-method"]').prop({
-									'checked': true,
-									'disabled': true
+							function createHiddenValue() {
+								const checkbox = $('#wc-payex_psp_cc-new-payment-method').prop({
+									checked: true,
+									disabled: true,
+									name: '',
 								});
+								const hidden = $('<input type="hidden" id="wc-payex_psp_cc-new-payment-method-hidden" name="wc-payex_psp_cc-new-payment-method" />');
+								hidden.prop('value', checkbox.prop('value'));
+								hidden.insertAfter(checkbox);
+							}
+							$(document).ready(function () {
+								if($("#wc-payex_psp_cc-new-payment-method-hidden").length > 0) {
+									$('#wc-payex_psp_cc-new-payment-method').prop({
+										checked: true,
+										disabled: true,
+										name: '',
+									});
+								} else {
+									createHiddenValue();
+								}
 							});
 
 							$(document).on('updated_checkout', function () {
-								$('input[name="wc-payex_psp_cc-new-payment-method"]').prop({
-									'checked': true,
-									'disabled': true
-								});
+								if($("#wc-payex_psp_cc-new-payment-method-hidden").length > 0) {
+									$('#wc-payex_psp_cc-new-payment-method').prop({
+										checked: true,
+										disabled: true,
+										name: '',
+									});
+								} else {
+									createHiddenValue();
+								}
 							});
 						}(jQuery));
 					</script>
@@ -363,7 +383,7 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway_Swedbank_Pay
 				'urls'                    => [
 					'completeUrl' => add_query_arg( 'action', 'swedbank_card_store', admin_url( 'admin-ajax.php' ) ),
 					'cancelUrl'   => wc_get_account_endpoint_url( 'payment-methods' ),
-					'callbackUrl' => WC()->api_request_url( __CLASS__ )
+					'callbackUrl' => WC()->api_request_url( strtolower(__CLASS__) )
 				],
 				'payeeInfo'               => [
 					'payeeId'        => $this->payee_id,
@@ -408,7 +428,6 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway_Swedbank_Pay
 			if ( ! $payment_id = WC()->session->get( 'verification_payment_id' ) ) {
 				throw new Exception( __( 'There was a problem adding the card.', WC_Swedbank_Pay::TEXT_DOMAIN ) );
 			}
-
 			$result = $this->request( 'GET', $payment_id . '/verifications' );
 			if ( isset( $result['verifications']['verificationList'][0] ) &&
 				 (
@@ -466,6 +485,17 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway_Swedbank_Pay
 	}
 
 	/**
+	 * Get the return url (thank you page).
+	 *
+	 * @param WC_Order $order Order object.
+	 * @return string
+	 */
+	private function get_intercept_url( $order ) {
+		$org_return_url = $this->get_return_url( $order );
+		return apply_filters( 'woocommerce_get_return_url', $return_url, $order );
+	}
+
+	/**
 	 * Process Payment
 	 *
 	 * @param int $order_id
@@ -492,7 +522,6 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway_Swedbank_Pay
 			if ( $token->get_user_id() !== $order->get_user_id() ) {
 				wc_add_notice( __( 'Access denied.', WC_Swedbank_Pay::TEXT_DOMAIN ), 'error' );
 			}
-
 			$generate_token = false;
 		}
 
@@ -596,7 +625,7 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway_Swedbank_Pay
 				$order->add_payment_token( $token );
 
 				wc_add_notice( __( 'Payment method was updated.', WC_Swedbank_Pay::TEXT_DOMAIN ) );
-
+				$order->payment_complete();
 				return [
 					'result'   => 'success',
 					'redirect' => $this->get_return_url( $order )
@@ -716,6 +745,10 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway_Swedbank_Pay
 			return;
 		}
 
+		if( swedbank_pay_obj_prop( $order, 'payment_method' ) !== $this->id ) {
+			return;
+		}
+
 		$payment_id = $order->get_meta( '_payex_payment_id' );
 		if ( empty( $payment_id ) ) {
 			return;
@@ -726,20 +759,17 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway_Swedbank_Pay
 			$result = $this->request( 'GET', $payment_id . '?$expand=authorizations,verifications' );
 		} catch ( Exception $e ) {
 			$this->log( sprintf( '[ERROR] Payment confirm: %s', $e->getMessage() ) );
-
 			return;
 		}
-
+		//die();
 		// Check payment state
 		switch ( $result['payment']['state'] ) {
 			case 'Ready':
 				// Replace token for:
 				// Change Payment Method
 				// Orders with Zero Amount
-				if ( $order->get_meta( '_payex_replace_token' ) === '1' ) {
-					if ( isset( $result['payment']['verifications']['verificationList'][0] ) &&
-						 isset( $result['payment']['verifications']['verificationList'][0]['paymentToken'] )
-					) {
+				if ( isset( $result['payment']['verifications']['verificationList'][0] ) ) {
+					if ( isset( $result['payment']['verifications']['verificationList'][0]['paymentToken'] ) && $order->get_meta( '_payex_replace_token' ) === '1' ) {
 						$verification = $result['payment']['verifications']['verificationList'][0];
 						$paymentToken    = $verification['paymentToken'];
 						$recurrenceToken = $verification['recurrenceToken'];
@@ -766,11 +796,24 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway_Swedbank_Pay
 						delete_post_meta( $order->get_id(), '_payex_replace_token' );
 						delete_post_meta( $order->get_id(), '_payment_tokens' );
 						$order->add_payment_token( $token );
-
 						wc_add_notice( __( 'Payment method was updated.', WC_Swedbank_Pay::TEXT_DOMAIN ) );
 					}
+					if ( $result['payment']['operation'] === 'Verify' && $order->get_meta( '_payex_payment_state' ) !== 'Verified' && $order->get_total() == 0 ) {
+						$transaction = $result['payment']['verifications']['verificationList'][0]['transaction'];
+						$order->update_meta_data( '_payex_payment_state', 'Verified' );
+						$order->update_meta_data( '_payex_transaction_authorize', $transaction['id'] );
+						$order->update_meta_data( '_transaction_id', $transaction['number'] );
+						$order->save_meta_data();
+	
+						// Reduce stock
+						$order_stock_reduced = $order->get_meta( '_order_stock_reduced' );
+						if ( ! $order_stock_reduced ) {
+							wc_reduce_stock_levels( $order->get_id() );
+						}
+	
+						$order->payment_complete( $transaction['number'] );
+					}
 				}
-
 				return;
 			case 'Failed':
 				$order->update_status( 'failed', __( 'Payment failed.', WC_Swedbank_Pay::TEXT_DOMAIN ) );
@@ -791,7 +834,7 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway_Swedbank_Pay
 	 */
 	public function return_handler() {
 		$raw_body = file_get_contents( 'php://input' );
-
+		
 		$this->log( sprintf( 'Incoming Callback: Initialized %s from %s', $_SERVER['REQUEST_URI'], $_SERVER['REMOTE_ADDR'] ) );
 		$this->log( sprintf( 'Incoming Callback. Post data: %s', var_export( $raw_body, true ) ) );
 
