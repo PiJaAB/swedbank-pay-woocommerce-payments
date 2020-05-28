@@ -761,7 +761,7 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway_Swedbank_Pay
 			$this->log( sprintf( '[ERROR] Payment confirm: %s', $e->getMessage() ) );
 			return;
 		}
-		//die();
+
 		// Check payment state
 		switch ( $result['payment']['state'] ) {
 			case 'Ready':
@@ -1243,7 +1243,7 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway_Swedbank_Pay
 			if ( count( $tokens ) === 0 ) {
 				$tokens = $subscription->get_parent()->get_payment_tokens();
 				foreach ( $tokens as $token_id ) {
-					$token = new WC_Payment_Token_Swedbank_Pay( $token_id );
+					$token = new WC_Payment_Token_Swedbank_Pay_Base( $token_id );
 					if ( $token->get_gateway_id() !== $this->id ) {
 						continue;
 					}
@@ -1325,7 +1325,7 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway_Swedbank_Pay
 
 			$tokens = explode( ',', $payment_meta['payex_meta']['token_id']['value'] );
 			foreach ( $tokens as $token_id ) {
-				$token = new WC_Payment_Token_Swedbank_Pay( $token_id );
+				$token = new WC_Payment_Token_Swedbank_Pay_Base( $token_id );
 				if ( ! $token->get_id() ) {
 					throw new Exception( 'This "Card Token ID" value not found.' );
 				}
@@ -1358,7 +1358,7 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway_Swedbank_Pay
 				// Add tokens
 				$tokens = explode( ',', $meta_value );
 				foreach ( $tokens as $token_id ) {
-					$token = new WC_Payment_Token_Swedbank_Pay( $token_id );
+					$token = new WC_Payment_Token_Swedbank_Pay_Base( $token_id );
 					if ( $token->get_id() ) {
 						$subscription->add_payment_token( $token );
 					}
@@ -1392,7 +1392,7 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway_Swedbank_Pay
 
 			$tokens = $renewal_order->get_payment_tokens();
 			foreach ( $tokens as $token_id ) {
-				$token = new WC_Payment_Token_Swedbank_Pay( $token_id );
+				$token = WC_Payment_Token_Swedbank_Pay_Base::get_instance( $token_id );
 				if ( $token->get_gateway_id() !== $this->id ) {
 					continue;
 				}
@@ -1401,8 +1401,12 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway_Swedbank_Pay
 					throw new Exception( 'Invalid Token Id' );
 				}
 
-				$paymentToken = $token->get_token();
-				$recurrenceToken = $token->get_recurrence_token();
+				if ($token->get_type() !== 'Swedbank_Pay_Legacy') {
+					$paymentToken = $token->get_token();
+					$recurrenceToken = $token->get_recurrence_token();
+				} else {
+					$recurrenceToken = $token->get_token();
+				}
 
 				// @todo Check vatAmount can be incorrect
 				$params = [
@@ -1522,7 +1526,7 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway_Swedbank_Pay
 
 		$tokens = $subscription->get_payment_tokens();
 		foreach ( $tokens as $token_id ) {
-			$token = new WC_Payment_Token_Swedbank_Pay( $token_id );
+			$token = WC_Payment_Token_Swedbank_Pay_Base::get_instance( $token_id );
 			if ( $token->get_gateway_id() !== $this->id ) {
 				continue;
 			}

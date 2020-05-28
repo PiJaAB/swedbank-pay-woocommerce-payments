@@ -164,7 +164,9 @@ class WC_Swedbank_Pay {
 	 */
 	public function woocommerce_loaded() {
 		// Includes
+		include_once( dirname( __FILE__ ) . '/includes/class-wc-payment-token-swedbank-pay-base.php' );
 		include_once( dirname( __FILE__ ) . '/includes/class-wc-payment-token-swedbank-pay.php' );
+		include_once( dirname( __FILE__ ) . '/includes/class-wc-payment-token-swedbank-pay-legacy.php' );
 		include_once( dirname( __FILE__ ) . '/includes/interfaces/class-wc-payment-gateway-swedbank-pay-interface.php' );
 		include_once( dirname( __FILE__ ) . '/includes/abstracts/abstract-wc-payment-gateway-swedbank-pay.php' );
 		include_once( dirname( __FILE__ ) . '/includes/class-wc-gateway-swedbank-pay-cc.php' );
