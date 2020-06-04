@@ -19,7 +19,7 @@ $log->add( $handler, 'Start upgrade....' );
 
 global $wpdb;
 
-$background_process = new WC_Background_Swedbank_Pay_Queue();
+$background_process = WC_Background_Swedbank_Pay_Queue::get_instance();
 
 // phpcs:disable
 $results = $wpdb->get_results(
