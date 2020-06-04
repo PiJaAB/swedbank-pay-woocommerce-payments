@@ -1,8 +1,6 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-} // Exit if accessed directly
+defined( 'ABSPATH' ) || exit;
 
 class WC_Payment_Token_Swedbank_Pay extends WC_Payment_Token_Swedbank_Pay_Base {
 	/**
@@ -17,14 +15,14 @@ class WC_Payment_Token_Swedbank_Pay extends WC_Payment_Token_Swedbank_Pay_Base {
 	 *
 	 * @var array
 	 */
-	protected $extra_data = [
+	protected $extra_data = array(
 		'last4'            => '',
 		'expiry_year'      => '',
 		'expiry_month'     => '',
 		'card_type'        => '',
 		'masked_pan'       => '',
-		'recurrence_token' => ''
-	];
+		'recurrence_token' => '',
+	);
 
 	/**
 	 * Returns Recurrence token

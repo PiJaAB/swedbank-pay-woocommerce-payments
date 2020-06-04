@@ -1,8 +1,6 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-} // Exit if accessed directly
+defined( 'ABSPATH' ) || exit;
 
 /* Token for Recur-only transactions */
 class WC_Payment_Token_Swedbank_Pay_Legacy extends WC_Payment_Token_Swedbank_Pay_Base {
