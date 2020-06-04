@@ -830,14 +830,14 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 			}
 
 			// Create Background Process Task
-			$background_process = new WC_Background_Swedbank_Pay_Queue();
+			$background_process = WC_Background_Swedbank_Pay_Queue::get_instance();
 			$background_process->push_to_queue(
 				array(
 					'payment_method_id' => $this->id,
 					'webhook_data'      => $raw_body,
 				)
 			);
-			$background_process->save();
+			$background_process->save()->dispatch();
 
 			$this->adapter->log(
 				LogLevel::INFO,

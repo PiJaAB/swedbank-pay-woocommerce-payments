@@ -21,6 +21,11 @@ class WC_Background_Swedbank_Pay_Queue extends WC_Background_Process {
 	private $logger;
 
 	/**
+	 * @var WC_Background_Swedbank_Pay_Queue
+	 */
+	private static $instance;
+
+	/**
 	 * Initiate new background process.
 	 */
 	public function __construct() {
@@ -29,9 +34,6 @@ class WC_Background_Swedbank_Pay_Queue extends WC_Background_Process {
 		// Uses unique prefix per blog so each blog has separate queue.
 		$this->prefix = 'wp_' . get_current_blog_id();
 		$this->action = 'wc_swedbank_pay_queue';
-
-		// Dispatch queue after shutdown.
-		add_action( 'shutdown', array( $this, 'dispatch_queue' ), 100 );
 
 		parent::__construct();
 	}
@@ -218,13 +220,11 @@ class WC_Background_Swedbank_Pay_Queue extends WC_Background_Process {
 		$this->log( 'Completed swedbank-pay queue job.' );
 	}
 
-	/**
-	 * Save and run queue.
-	 */
-	public function dispatch_queue() {
-		if ( ! empty( $this->data ) ) {
-			$this->save()->dispatch();
+	public static function get_instance() {
+		if (null === self::$instance) {
+			self::$instance = new self();
 		}
+		return self::$instance;
 	}
 
 	/**
