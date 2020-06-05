@@ -25,6 +25,8 @@ class WC_Background_Swedbank_Pay_Queue extends WC_Background_Process {
 	 */
 	private static $instance;
 
+	private $fp = null;
+
 	/**
 	 * Initiate new background process.
 	 */
@@ -49,6 +51,41 @@ class WC_Background_Swedbank_Pay_Queue extends WC_Background_Process {
 				$this->cron_hook_identifier
 			);
 		}
+	}
+
+
+	/**
+	 * Lock process
+	 *
+	 * Lock the process so that multiple instances can't run simultaneously.
+	 * Override if applicable, but the duration should be greater than that
+	 * defined in the time_exceeded() method.
+	 */
+	protected function lock_process() {
+		$this->fp = fopen(dirname( __FILE__ ) . '/../lockfile', "r+");
+		
+		if (flock($this->fp, LOCK_EX)) {  // acquire an exclusive lock
+			$this->log( 'Acquired file lock' );
+			return parent::lock_process();
+		} else {
+			throw new Exception ( 'Couldn\'t get the lock!' );
+		}
+	}
+
+	/**
+	 * Unlock process
+	 *
+	 * Unlock the process so that other instances can spawn.
+	 *
+	 * @return $this
+	 */
+	protected function unlock_process() {
+		parent::unlock_process();
+		$this->log( 'Released file lock' );
+		flock($this->fp, LOCK_UN);
+		fclose($this->fp);
+		$this->fp = null;
+		return $this;
 	}
 
 	/**
@@ -129,7 +166,7 @@ class WC_Background_Swedbank_Pay_Queue extends WC_Background_Process {
 	 */
 	protected function task( $item ) {
 		$this->log( sprintf( 'Start task: %s', var_export( $item, true ) ) );
-
+		$this->log( sprintf( 'Running task with file-lock: %s', $this->fp !== null ? 'true' : false ) );
 		try {
 			$data = json_decode( $item['webhook_data'], true );
 			if ( JSON_ERROR_NONE !== json_last_error() ) {

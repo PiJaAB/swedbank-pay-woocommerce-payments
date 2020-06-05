@@ -2,7 +2,6 @@
 
 defined( 'ABSPATH' ) || exit;
 
-use SwedbankPay\Core\Adapter\WC_Adapter;
 use SwedbankPay\Payments\WooCommerce\WC_Background_Swedbank_Pay_Queue;
 use SwedbankPay\Payments\WooCommerce\WC_Swedbank_Pay_Transactions;
 use SwedbankPay\Core\Core;
@@ -245,7 +244,7 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 			2
 		);
 
-		$this->adapter = new WC_Adapter( $this );
+		$this->adapter = new WC_Patched_Adapter( $this );
 		$this->core    = new Core( $this->adapter );
 	}
 
@@ -584,9 +583,9 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 
 		// Change Payment Method
 		// Orders with Zero Amount
-		if ( (float) $order->get_total() === 0 || self::wcs_is_payment_change() ) {
+		if ( (float) $order->get_total() === 0.0 || self::wcs_is_payment_change() ) {
 			// Store new Card
-			if ( 'new' !== $token_id ) {
+			if ( 'new' === $token_id ) {
 				try {
 					$this->is_change_credit_card = true;
 					$result                      = $this->core->initiateNewCreditCardPayment( $order->get_id() );

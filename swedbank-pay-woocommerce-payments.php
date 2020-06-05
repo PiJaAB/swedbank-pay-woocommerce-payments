@@ -88,8 +88,7 @@ class WC_Swedbank_Pay extends WC_Swedbank_Plugin {
 		include_once( dirname( __FILE__ ) . '/includes/class-wc-payment-token-swedbank-pay-base.php' );
 		include_once( dirname( __FILE__ ) . '/includes/class-wc-payment-token-swedbank-pay.php' );
 		include_once( dirname( __FILE__ ) . '/includes/class-wc-payment-token-swedbank-pay-legacy.php' );
-		include_once( dirname( __FILE__ ) . '/includes/interfaces/class-wc-payment-gateway-swedbank-pay-interface.php' );
-		include_once( dirname( __FILE__ ) . '/includes/abstracts/abstract-wc-payment-gateway-swedbank-pay.php' );
+		include_once( dirname( __FILE__ ) . '/includes/class-wc-patched-adapter.php' );
 		include_once( dirname( __FILE__ ) . '/includes/class-wc-gateway-swedbank-pay-cc.php' );
 		include_once( dirname( __FILE__ ) . '/includes/class-wc-gateway-swedbank-pay-invoice.php' );
 		include_once( dirname( __FILE__ ) . '/includes/class-wc-gateway-swedbank-pay-vipps.php' );
