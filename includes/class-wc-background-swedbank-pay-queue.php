@@ -64,11 +64,11 @@ class WC_Background_Swedbank_Pay_Queue extends WC_Background_Process {
 	protected function lock_process() {
 		$this->fp = fopen(dirname( __FILE__ ) . '/../lockfile', "r+");
 		
-		if (flock($this->fp, LOCK_EX)) {  // acquire an exclusive lock
+		if (flock($this->fp, LOCK_EX | LOCK_NB)) {  // acquire an exclusive lock
 			$this->log( 'Acquired file lock' );
 			return parent::lock_process();
 		} else {
-			throw new Exception ( 'Couldn\'t get the lock!' );
+			throw new Exception ( 'Couldn\'t get the lock. Possible the queue is already running?' );
 		}
 	}
 
@@ -263,6 +263,21 @@ class WC_Background_Swedbank_Pay_Queue extends WC_Background_Process {
 		}
 		return self::$instance;
 	}
+
+		/**
+		 * Handle
+		 *
+		 * Pass each queue item to the task handler, while remaining
+		 * within server memory and time limit constraints.
+		 */
+		protected function handle() {
+			try {
+				parent::handle();
+			} catch (Exception $e) {
+				$this->log( sprintf( '[ERROR]: %s', $e->getMessage() ) );
+				wp_die();
+			}
+		}
 
 	/**
 	 * Get Post Id by Meta
