@@ -436,6 +436,31 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 		return true;
 	}
 
+
+	private function patch_order_phone_no( $order ) {
+		if ( ! $order ) return;
+		$phone = $order->get_billing_phone();
+		if ( ! $phone ) return;
+		ob_start();
+		var_dump($phone);
+		$phoneDump = ob_get_clean();
+		if (preg_match ( '/^\+[0-9]+$/', $phone)) {
+			return;
+		}
+		if (!preg_match ( '/^\+?[0-9\s-]+$/', $phone)) {
+			throw new Exception('Invalid phone number' . $phoneDump);
+		}
+		$phone = preg_replace('/[\s-]/', '', $phone);
+		if (!preg_match ( '/^(?:\+|0)[0-9]/', $phone)) {
+			throw new Exception('Invalid phone number' . $phoneDump);
+		}
+		if ($phone[0] !== '+' ) {
+			$phone = substr_replace($phone, '+46', 0, 1);
+		}
+		$order->set_billing_phone( $phone );
+    $order->save();
+	}
+
 	/**
 	 * Add Payment Method
 	 * @return array
@@ -451,6 +476,7 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 				'payment_method' => $this->id,
 			)
 		);
+		$this->patch_order_phone_no($order);
 		$order->calculate_totals();
 
 		try {
@@ -560,6 +586,7 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 	 */
 	public function process_payment( $order_id ) {
 		$order           = wc_get_order( $order_id );
+		$this->patch_order_phone_no($order);
 		$token_id        = isset( $_POST['wc-payex_psp_cc-payment-token'] ) ? wc_clean( $_POST['wc-payex_psp_cc-payment-token'] ) : 'new';
 		$maybe_save_card = isset( $_POST['wc-payex_psp_cc-new-payment-method'] ) && (bool) $_POST['wc-payex_psp_cc-new-payment-method'];
 		$generate_token  = ( 'yes' === $this->save_cc && $maybe_save_card );
@@ -864,6 +891,7 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 		if ( ! $order ) {
 			return false;
 		}
+		$this->patch_order_phone_no($order);
 
 		// Full Refund
 		if ( is_null( $amount ) ) {
@@ -901,9 +929,11 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 			$order = wc_get_order( $order );
 		}
 
-		if ( is_int( $order ) ) {
-			$order = wc_get_order( $order );
+		if ( ! $order ) {
+			return;
 		}
+
+		$this->patch_order_phone_no($order);
 
 		try {
 			// Disable status change hook
@@ -931,6 +961,12 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 		if ( is_int( $order ) ) {
 			$order = wc_get_order( $order );
 		}
+
+		if ( ! $order ) {
+			return;
+		}
+
+		$this->patch_order_phone_no($order);
 
 		try {
 			// Disable status change hook
@@ -1140,6 +1176,7 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 				);
 				$payment_id = $result['payment']['id'];
 
+				$this->patch_order_phone_no($order);
 				// Save payment ID
 				$renewal_order->update_meta_data( '_payex_payment_id', $result['payment']['id'] );
 				$renewal_order->save_meta_data();
