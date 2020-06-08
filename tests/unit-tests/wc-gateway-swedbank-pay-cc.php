@@ -55,6 +55,7 @@ class WC_Unit_Gateway_Swedbank_Pay_CC extends WC_Unit_Test_Case {
 
 	public function test_order() {
 		$order = WC_Helper_Order::create_order();
+		$order->set_billing_phone('+1-555-32123');
 		$order->set_payment_method( $this->gateway );
 		$order->set_currency( 'SEK' );
 		$order->save();
@@ -64,6 +65,7 @@ class WC_Unit_Gateway_Swedbank_Pay_CC extends WC_Unit_Test_Case {
 
 	public function test_process_payment() {
 		$order = WC_Helper_Order::create_order();
+		$order->set_billing_phone('+1-555-32123');
 		$order->set_payment_method( $this->gateway );
 		$order->set_currency( 'SEK' );
 		$order->save();
@@ -83,6 +85,7 @@ class WC_Unit_Gateway_Swedbank_Pay_CC extends WC_Unit_Test_Case {
 	public function test_payment_confirm() {
 		/** @var WC_Order $order */
 		$order = WC_Helper_Order::create_order();
+		$order->set_billing_phone('+1-555-32123');
 		$order->set_payment_method( $this->gateway );
 		$order->set_currency( 'SEK' );
 		$order->update_meta_data( '_payex_payment_id', '/invalid/payment/id' );
@@ -99,6 +102,8 @@ class WC_Unit_Gateway_Swedbank_Pay_CC extends WC_Unit_Test_Case {
 	 */
 	public function test_capture_payment() {
 		$order = WC_Helper_Order::create_order();
+		$order->set_billing_phone('+1-555-32123');
+		$order->save();
 		$this->gateway->capture_payment( $order );
 	}
 
@@ -107,11 +112,15 @@ class WC_Unit_Gateway_Swedbank_Pay_CC extends WC_Unit_Test_Case {
 	 */
 	public function test_cancel_payment() {
 		$order = WC_Helper_Order::create_order();
+		$order->set_billing_phone('+1-555-32123');
+		$order->save();
 		$this->gateway->cancel_payment( $order );
 	}
 
 	public function test_process_refund() {
 		$order  = WC_Helper_Order::create_order();
+		$order->set_billing_phone('+1-555-32123');
+		$order->save();
 		$result = $this->gateway->process_refund( $order->get_id(), $order->get_total(), 'Test' );
 		$this->assertInstanceOf( 'WP_Error', $result );
 	}
