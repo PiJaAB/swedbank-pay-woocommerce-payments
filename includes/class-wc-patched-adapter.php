@@ -17,6 +17,7 @@ class WC_Patched_Adapter extends WC_Adapter
    * @param mixed|null $transaction_id
    */
   public function updateOrderStatus($order_id, $status, $message = null, $transaction_id = null) {
+    $order = wc_get_order($order_id);
     if ( !$order ) return;
     $order->read_meta_data(true);
     $old_transaction_number = $order->get_meta('_transaction_number');
