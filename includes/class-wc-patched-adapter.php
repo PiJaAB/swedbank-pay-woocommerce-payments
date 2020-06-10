@@ -6,8 +6,34 @@ use SwedbankPay\Core\Log\LogLevel;
 
 defined('ABSPATH') || exit;
 
+
 class WC_Patched_Adapter extends WC_Adapter
 {
+  private static function patchPhoneNumber($phone) {
+		if ( ! $phone ) {
+			return null;
+		}
+
+		if (preg_match ( '/^\+[0-9]+$/', $phone)) {
+			return $phone;
+		}
+
+		if (!preg_match ( '/^\+?[0-9\s-]+$/', $phone)) {
+			return null;
+		}
+
+		$phone = preg_replace('/[\s-]/', '', $phone);
+
+		if (!preg_match ( '/^(?:\+|0)[0-9]/', $phone)) {
+      return null;
+		}
+
+		if ($phone[0] !== '+' ) {
+			$phone = substr_replace($phone, '+46', 0, 1);
+    }
+
+    return $phone;
+  }
   /**
    * Update Order Status.
    *
@@ -70,6 +96,8 @@ class WC_Patched_Adapter extends WC_Adapter
         $data[OrderInterface::BILLING_EMAIL] = null;
         $data[OrderInterface::BILLING_FIRST_NAME] = null;
         $data[OrderInterface::BILLING_LAST_NAME] = null;
+      } else {
+        $data[OrderInterface::BILLING_PHONE] = WC_Patched_Adapter::patchPhoneNumber($data[OrderInterface::BILLING_PHONE]);
       }
 
       $validShipping = true;
@@ -91,6 +119,8 @@ class WC_Patched_Adapter extends WC_Adapter
         $data[OrderInterface::SHIPPING_EMAIL] = null;
         $data[OrderInterface::SHIPPING_FIRST_NAME] = null;
         $data[OrderInterface::SHIPPING_LAST_NAME] = null;
+      } else {
+        $data[OrderInterface::SHIPPING_PHONE] = WC_Patched_Adapter::patchPhoneNumber($data[OrderInterface::SHIPPING_PHONE]);
       }
       
       return $data;
