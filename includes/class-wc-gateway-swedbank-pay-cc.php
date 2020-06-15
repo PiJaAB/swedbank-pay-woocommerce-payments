@@ -987,7 +987,7 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 				$tokens = $subscription->get_parent()->get_payment_tokens();
 				foreach ( $tokens as $token_id ) {
 					$token = new WC_Payment_Token_Swedbank_Pay_Base( $token_id );
-					if ( $token->get_gateway_id() !== $this->id ) {
+					if ( $token === null || $token->get_gateway_id() !== $this->id ) {
 						continue;
 					}
 
@@ -1069,7 +1069,7 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 			$tokens = explode( ',', $payment_meta['payex_meta']['token_id']['value'] );
 			foreach ( $tokens as $token_id ) {
 				$token = new WC_Payment_Token_Swedbank_Pay_Base( $token_id );
-				if ( ! $token->get_id() ) {
+				if ( $token === null || ! $token->get_id() ) {
 					throw new Exception( 'This "Card Token ID" value not found.' );
 				}
 
@@ -1122,7 +1122,7 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 
 			foreach ( $tokens as $token_id ) {
 				$token = WC_Payment_Token_Swedbank_Pay_Base::get_instance( $token_id );
-				if ($token === false || $token->get_gateway_id() !== $this->id ) {
+				if ($token === null || $token->get_gateway_id() !== $this->id ) {
 					continue;
 				}
 
@@ -1220,7 +1220,7 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 		$tokens = $subscription->get_payment_tokens();
 		foreach ( $tokens as $token_id ) {
 			$token = WC_Payment_Token_Swedbank_Pay_Base::get_instance( $token_id );
-			if ( $token->get_gateway_id() !== $this->id ) {
+			if ( $token === null || $token->get_gateway_id() !== $this->id ) {
 				continue;
 			}
 
