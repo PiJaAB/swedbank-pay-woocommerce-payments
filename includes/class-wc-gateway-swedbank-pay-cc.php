@@ -1122,7 +1122,7 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 
 			foreach ( $tokens as $token_id ) {
 				$token = WC_Payment_Token_Swedbank_Pay_Base::get_instance( $token_id );
-				if ( $token->get_gateway_id() !== $this->id ) {
+				if ($token === false || $token->get_gateway_id() !== $this->id ) {
 					continue;
 				}
 
