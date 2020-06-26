@@ -2,6 +2,9 @@
 
 namespace SwedbankPay\Payments\WooCommerce;
 
+use SwedbankPay\Core\Order;
+use SwedbankPay\Core\OrderInterface;
+use SwedbankPay\Core\Api\Transaction;
 use WC_Background_Process;
 use WC_Logger;
 
@@ -229,8 +232,65 @@ class WC_Background_Swedbank_Pay_Queue extends WC_Background_Process {
 			try {
 				// Disable status change hook
 				remove_action( 'woocommerce_order_status_changed', 'WC_Swedbank_Pay::order_status_changed', 10 );
+				// Hack for verification
+				/** @var Order $order */
+				$SwedbankOrder = new Order($gateway->adapter->getOrderData($order->get_id()));
 
-				$gateway->core->processTransaction( $order->get_id(), $transaction );
+				if (is_array($transaction)) {
+						$transaction = new Transaction($transaction);
+				} elseif (!$transaction instanceof Transaction) {
+						throw new \InvalidArgumentException('Invalid a transaction parameter');
+				}
+
+				// Apply action
+				if ($transaction->getType() === 'Verification') {
+					if ($transaction->isFailed()) {
+						$gateway->core->updateOrderStatus(
+								$order_id,
+								OrderInterface::STATUS_FAILED,
+								sprintf('Verification has been failed. Reason: %s.', $transaction->getFailedDetails()),
+								$transaction->getNumber()
+						);
+					} else if ($transaction->isPending()) {
+							$gateway->core->updateOrderStatus(
+									$order_id,
+									OrderInterface::STATUS_AUTHORIZED,
+									'Verification is pending.',
+									$transaction->getNumber()
+							);
+					} else {
+						$gateway->core->updateOrderStatus(
+								$order_id,
+								'Verified',
+								'Card has been verified.',
+								$transaction->getNumber()
+						);
+
+						// Save Payment Token
+						if ($SwedbankOrder->needsSaveToken()) {
+								$verifications = $gateway->core->fetchVerificationList($SwedbankOrder->getPaymentId());
+								foreach ($verifications as $verification) {
+										if ($verification->getPaymentToken() || $verification->getRecurrenceToken()) {
+												// Add payment token
+												$gateway->adapter->savePaymentToken(
+														$SwedbankOrder->getCustomerId(),
+														$verification->getPaymentToken(),
+														$verification->getRecurrenceToken(),
+														$verification->getCardBrand(),
+														$verification->getMaskedPan(),
+														$verification->getExpireDate(),
+														$SwedbankOrder->getOrderId()
+												);
+
+												// Use the first item only
+												break;
+										}
+								}
+						}
+					}
+				} else {
+					$gateway->core->processTransaction( $order->get_id(), $transaction );
+				}
 			} catch ( \Exception $e ) {
 				$this->log( sprintf( '[WARNING]: Transaction processing: %s', $e->getMessage() ) );
 			}

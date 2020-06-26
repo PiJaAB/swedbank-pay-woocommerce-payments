@@ -577,6 +577,8 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 			// Check access
 			if ( $token->get_user_id() !== $order->get_user_id() ) {
 				wc_add_notice( __( 'Access denied.', 'swedbank-pay-woocommerce-payments' ), 'error' );
+				
+				return false;
 			}
 			$generate_token = false;
 		}
