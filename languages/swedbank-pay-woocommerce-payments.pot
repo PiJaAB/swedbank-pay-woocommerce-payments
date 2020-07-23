@@ -1,23 +1,18 @@
+# Copyright (C) 2020 Swedbank Pay
+# This file is distributed under the same license as the Swedbank Pay Payments plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Woocommerce Gateway SwedbankPay Checkout\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/swedbank-pay-"
-"woocommerce-payments\n"
-"POT-Creation-Date: 2020-07-23T08:35:15+00:00\n"
-"PO-Revision-Date: 2020-07-23 10:49+0200\n"
-"Last-Translator: PiJa <info@pija.se>\n"
-"Language-Team: Svenska\n"
-"Language: sv_SE\n"
+"Project-Id-Version: Swedbank Pay Payments 2.0.0-beta.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/swedbank-pay-woocommerce-payments\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4\n"
-"X-Poedit-KeywordsList: __;_e;_e(sprintf;__(sprintf;_n;_n(sprintf;_n_noop\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Loco-Version: 2.3.1; wp-5.3.2\n"
-"X-Poedit-SearchPath-0: ..\n"
+"POT-Creation-Date: 2020-07-23T08:35:15+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.4.0\n"
+"X-Domain: swedbank-pay-woocommerce-payments\n"
 
 #. Plugin Name of the plugin
 msgid "Swedbank Pay Payments"
@@ -28,12 +23,8 @@ msgid "https://www.swedbankpay.com/"
 msgstr ""
 
 #. Description of the plugin
-msgid ""
-"(Preview). Provides a Credit Card Payment Gateway through Swedbank Pay for "
-"WooCommerce."
+msgid "(Preview). Provides a Credit Card Payment Gateway through Swedbank Pay for WooCommerce."
 msgstr ""
-"(Förhandsvisning). Tillhandahåller kortbetalningar via Swedbank Pay för "
-"WooCommerce."
 
 #. Author of the plugin
 msgid "Swedbank Pay"
@@ -47,49 +38,49 @@ msgstr ""
 #: includes/class-wc-gateway-swedbank-pay-cc.php:270
 #: includes/class-wc-gateway-swedbank-pay-cc.php:279
 msgid "Credit Card"
-msgstr "Kreditkort"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:258
 #: includes/class-wc-gateway-swedbank-pay-invoice.php:138
 #: includes/class-wc-gateway-swedbank-pay-swish.php:130
 #: includes/class-wc-gateway-swedbank-pay-vipps.php:116
 msgid "Enable/Disable"
-msgstr "Aktivera/Inaktivera"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:260
 #: includes/class-wc-gateway-swedbank-pay-invoice.php:140
 #: includes/class-wc-gateway-swedbank-pay-swish.php:132
 #: includes/class-wc-gateway-swedbank-pay-vipps.php:118
 msgid "Enable plugin"
-msgstr "Aktivera plugin"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:264
 #: includes/class-wc-gateway-swedbank-pay-invoice.php:144
 #: includes/class-wc-gateway-swedbank-pay-swish.php:136
 #: includes/class-wc-gateway-swedbank-pay-vipps.php:122
 msgid "Title"
-msgstr "Titel"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:266
 #: includes/class-wc-gateway-swedbank-pay-invoice.php:146
 #: includes/class-wc-gateway-swedbank-pay-swish.php:138
 #: includes/class-wc-gateway-swedbank-pay-vipps.php:124
 msgid "This controls the title which the user sees during checkout."
-msgstr "Detta reglerar titeln som användaren ser vid utcheckningen."
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:273
 #: includes/class-wc-gateway-swedbank-pay-invoice.php:153
 #: includes/class-wc-gateway-swedbank-pay-swish.php:145
 #: includes/class-wc-gateway-swedbank-pay-vipps.php:131
 msgid "Description"
-msgstr "Beskrivning"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:275
 #: includes/class-wc-gateway-swedbank-pay-invoice.php:155
 #: includes/class-wc-gateway-swedbank-pay-swish.php:147
 #: includes/class-wc-gateway-swedbank-pay-vipps.php:133
 msgid "This controls the description which the user sees during checkout."
-msgstr "Detta styr den beskrivning som användaren ser vid utcheckningen."
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:282
 #: includes/class-wc-gateway-swedbank-pay-cc.php:284
@@ -100,7 +91,7 @@ msgstr "Detta styr den beskrivning som användaren ser vid utcheckningen."
 #: includes/class-wc-gateway-swedbank-pay-vipps.php:140
 #: includes/class-wc-gateway-swedbank-pay-vipps.php:142
 msgid "Merchant Token"
-msgstr "Merchant Token"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:288
 #: includes/class-wc-gateway-swedbank-pay-cc.php:290
@@ -111,33 +102,33 @@ msgstr "Merchant Token"
 #: includes/class-wc-gateway-swedbank-pay-vipps.php:146
 #: includes/class-wc-gateway-swedbank-pay-vipps.php:148
 msgid "Payee Id"
-msgstr "Payee Id"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:294
 #: includes/class-wc-gateway-swedbank-pay-cc.php:296
 msgid "Subsite"
-msgstr "Undersida"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:300
 #: includes/class-wc-gateway-swedbank-pay-invoice.php:180
 #: includes/class-wc-gateway-swedbank-pay-swish.php:172
 #: includes/class-wc-gateway-swedbank-pay-vipps.php:158
 msgid "Test Mode"
-msgstr "Övningsläge"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:302
 #: includes/class-wc-gateway-swedbank-pay-invoice.php:182
 #: includes/class-wc-gateway-swedbank-pay-swish.php:174
 #: includes/class-wc-gateway-swedbank-pay-vipps.php:160
 msgid "Enable Swedbank Pay Test Mode"
-msgstr "Aktivera Swedbank Pay testläge"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:306
 #: includes/class-wc-gateway-swedbank-pay-invoice.php:186
 #: includes/class-wc-gateway-swedbank-pay-swish.php:178
 #: includes/class-wc-gateway-swedbank-pay-vipps.php:164
 msgid "Debug"
-msgstr "Debug"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:308
 #: includes/class-wc-gateway-swedbank-pay-invoice.php:188
@@ -145,37 +136,37 @@ msgstr "Debug"
 #: includes/class-wc-gateway-swedbank-pay-swish.php:210
 #: includes/class-wc-gateway-swedbank-pay-vipps.php:166
 msgid "Enable logging"
-msgstr "Aktivera loggning"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:312
 #: includes/class-wc-gateway-swedbank-pay-invoice.php:192
 #: includes/class-wc-gateway-swedbank-pay-swish.php:184
 #: includes/class-wc-gateway-swedbank-pay-vipps.php:170
 msgid "Language"
-msgstr "Språk"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:319
 #: includes/class-wc-gateway-swedbank-pay-invoice.php:199
 #: includes/class-wc-gateway-swedbank-pay-swish.php:191
 #: includes/class-wc-gateway-swedbank-pay-vipps.php:177
 msgid "Language of pages displayed by Swedbank Pay during payment."
-msgstr "Språk sidor visas av Swedbank Pay under betalning."
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:326
 msgid "Auto Capture"
-msgstr "Fånga automatiskt"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:328
 msgid "Enable Auto Capture"
-msgstr "Aktivera Fånga automatiskt"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:332
 msgid "Save CC"
-msgstr "Spara kreditkort"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:334
 msgid "Enable Save CC feature"
-msgstr "Aktivera kreditkortsparande"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:338
 #: includes/class-wc-gateway-swedbank-pay-cc.php:340
@@ -186,101 +177,101 @@ msgstr "Aktivera kreditkortsparande"
 #: includes/class-wc-gateway-swedbank-pay-vipps.php:184
 #: includes/class-wc-gateway-swedbank-pay-vipps.php:186
 msgid "Terms & Conditions Url"
-msgstr "URL till Allmänna Villkor"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:344
 #: includes/class-wc-gateway-swedbank-pay-cc.php:346
 msgid "Reject Credit Cards"
-msgstr "Avvisa kreditkort"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:350
 #: includes/class-wc-gateway-swedbank-pay-cc.php:352
 msgid "Reject Debit Cards"
-msgstr "Avvisa kontokort"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:356
 #: includes/class-wc-gateway-swedbank-pay-cc.php:358
 msgid "Reject Consumer Cards"
-msgstr "Avvisa privatkundskort"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:362
 #: includes/class-wc-gateway-swedbank-pay-cc.php:364
 msgid "Reject Corporate Cards"
-msgstr "Avvisa företagskort"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:487
 #: includes/class-wc-gateway-swedbank-pay-cc.php:516
 msgid "There was a problem adding the card."
-msgstr "Det gick inte att lägga till kortet."
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:521
 msgid "Payment method successfully added."
-msgstr "Betalningsmetoden har lagts till."
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:572
 msgid "Failed to load token."
-msgstr "Misslyckades med att ladda token."
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:579
 msgid "Access denied."
-msgstr "Tillträde beviljas ej."
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:609
 #: includes/class-wc-gateway-swedbank-pay-cc.php:663
 msgid "Customer has been redirected to Swedbank Pay."
-msgstr "Kunden har skickats till Swedbank Pay."
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:624
 #: includes/class-wc-gateway-swedbank-pay-cc.php:744
 msgid "Payment method was updated."
-msgstr "Betalningsmetoden har uppdaterats."
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:769
 msgid "Payment failed."
-msgstr "Betalningen misslyckades."
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-cc.php:776
 msgid "Payment canceled."
-msgstr "Betalningen avbröts."
+msgstr ""
 
 #. translators: 1: pan 2: month 3: year
 #: includes/class-wc-gateway-swedbank-pay-cc.php:1233
 msgid "Via %1$s card ending in %2$s/%3$s"
-msgstr "Via %1$s kort slutar %2$s /%3$s"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-invoice.php:55
 #: includes/class-wc-gateway-swedbank-pay-invoice.php:150
 #: includes/class-wc-gateway-swedbank-pay-invoice.php:159
 msgid "Invoice"
-msgstr "Faktura"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-invoice.php:222
 msgid "Social Security Number"
-msgstr "Personnummer"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-invoice.php:239
 msgid "Please specify country."
-msgstr "Vänligen fyll i land."
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-invoice.php:245
 msgid "Please specify postcode."
-msgstr "Vänligen fyll i postnummer."
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-invoice.php:252
 msgid "This country is not supported by the payment system."
-msgstr "Detta land stöds inte av betalningssystemet."
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-invoice.php:264
 msgid "Invalid phone number. Phone code must include country phone code."
-msgstr "Ogiltigt telefonnummer. Telefonkoden måste innehålla landskodskod."
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-invoice.php:277
 msgid "Please enter your Social Security Number and confirm your order."
-msgstr "Var god och skriv in ditt personnummer och godkänn ordern."
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-invoice.php:534
 msgid "Discount"
-msgstr "Rabatt"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-swish.php:67
 msgid "Swish"
@@ -294,15 +285,15 @@ msgstr ""
 #: includes/class-wc-gateway-swedbank-pay-swish.php:198
 #: includes/class-wc-gateway-swedbank-pay-swish.php:204
 msgid "Checkout Method"
-msgstr "Betalmetod"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-swish.php:201
 msgid "Redirect"
-msgstr "Omdirigera"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-swish.php:202
 msgid "Direct"
-msgstr "Direkt"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-swish.php:208
 msgid "Ecom Only"
@@ -311,15 +302,15 @@ msgstr ""
 #: includes/class-wc-gateway-swedbank-pay-swish.php:240
 #: includes/class-wc-gateway-swedbank-pay-vipps.php:209
 msgid "Phone number required."
-msgstr "Telefonnummer krävs."
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-swish.php:246
 msgid "Input your number like this +46xxxxxxxxx"
-msgstr "Ange ditt nummer så här + 46xxxxxxxxx"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-swish.php:321
 msgid "Wrong method"
-msgstr "Fel betalmetod"
+msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-vipps.php:55
 msgid "Vipps"
@@ -332,211 +323,117 @@ msgstr ""
 
 #: includes/class-wc-gateway-swedbank-pay-vipps.php:215
 msgid "Input your number like this +47xxxxxxxxx"
-msgstr "Ange ditt nummer så här + 47xxxxxxxxx"
+msgstr ""
 
 #: includes/class-wc-swedbank-pay-icon.php:41
 msgid "Checkout Icon"
-msgstr "Betalmetod"
+msgstr ""
 
 #: includes/class-wc-swedbank-pay-icon.php:43
 msgid "Enter an image URL to change the icon."
-msgstr "Skriv in en URL till en bild för att byta ikon."
+msgstr ""
 
 #. translators: 1: note
 #: includes/class-wc-swedbank-plugin.php:251
 #: includes/class-wc-swedbank-plugin.php:268
 msgid "Order status rollback. %1$s"
-msgstr "Order status återställning. %1$s"
+msgstr ""
 
 #: includes/class-wc-swedbank-plugin.php:305
 msgid "Swedbank Pay Payments Actions"
-msgstr "Swedbank Pay Payments Funktioner"
+msgstr ""
 
 #: includes/class-wc-swedbank-plugin.php:407
 msgid "Please wait..."
-msgstr "Vänligen vänta..."
+msgstr ""
 
 #: includes/class-wc-swedbank-plugin.php:434
 msgid "Capture success."
-msgstr "Capture framgång."
+msgstr ""
 
 #: includes/class-wc-swedbank-plugin.php:460
 msgid "Cancel success."
-msgstr "Avbryt framgång."
+msgstr ""
 
 #: includes/class-wc-swedbank-plugin.php:513
 msgid "Upgrade finished."
-msgstr "Uppdateringen avslutad."
+msgstr ""
 
 #: includes/class-wc-swedbank-plugin.php:524
-msgid ""
-"Warning! Swedbank Pay Payments plugin requires to update the database "
-"structure."
+msgid "Warning! Swedbank Pay Payments plugin requires to update the database structure."
 msgstr ""
-"Varning! Swedbank Pay Payments plugin kräver en uppdateringen till "
-"databasstrukturen."
 
 #. translators: 1: start tag 2: end tag
 #: includes/class-wc-swedbank-plugin.php:529
 msgid "Please click %1$s here %2$s to start upgrade."
-msgstr "Klicka %1$s här $2$s för att starta uppdateringen."
+msgstr ""
 
 #: swedbank-pay-woocommerce-payments.php:66
 msgid "Settings"
-msgstr "Inställningar"
+msgstr ""
 
 #: swedbank-pay-woocommerce-payments.php:86
 #: swedbank-pay-woocommerce-payments.php:123
 #: swedbank-pay-woocommerce-payments.php:126
 msgid "Manual Processing"
-msgstr "Manuell Behandling"
+msgstr ""
 
 #. translators: 1: Total amount of orders
 #: swedbank-pay-woocommerce-payments.php:92
 msgid "Manual Processing <span class=\"count\">(%1$s)</span>"
 msgid_plural "Manual Processing <span class=\"count\">(%1$s)</span>"
-msgstr[0] "Manuell Behandling <span class=\"count\">(%1$s)</span>"
-msgstr[1] "Manuell Behandling <span class=\"count\">(%1$s)</span>"
+msgstr[0] ""
+msgstr[1] ""
 
 #: swedbank-pay-woocommerce-payments.php:163
 msgid "There are orders requiring manual processing."
-msgstr "Det finns ordrar som kräver manuell behandling."
+msgstr ""
 
 #: swedbank-pay-woocommerce-payments.php:164
-msgid ""
-"One or more orders are marked for manual processing. Please verify their "
-"payment status as soon as possible."
+msgid "One or more orders are marked for manual processing. Please verify their payment status as soon as possible."
 msgstr ""
-"En eller flera ordrar är markerad för manuell behandling. Verifiera deras "
-"betalningsstatus så snart som möjligt."
 
 #: swedbank-pay-woocommerce-payments.php:165
 msgid "List of relevant orders:"
-msgstr "Lista över relevanta ordrar:"
+msgstr ""
 
 #. translators: 1: Total amount of orders
 #: swedbank-pay-woocommerce-payments.php:178
 msgid "List the <strong class=\"count\">%1$s</strong> order."
 msgid_plural "List all <strong class=\"count\">%1$s</strong> orders."
-msgstr[0] "Lista den <strong class=\"count\">enda</strong> beställningen."
-msgstr[1] "Lista alla <strong class=\"count\">%1$s</strong> orderar."
+msgstr[0] ""
+msgstr[1] ""
 
-#: templates/admin/action-buttons.php:14 templates/admin/payment-actions.php:36
+#: templates/admin/action-buttons.php:14
+#: templates/admin/payment-actions.php:36
 msgid "Capture Payment"
-msgstr "Capture Payment"
+msgstr ""
 
-#: templates/admin/action-buttons.php:23 templates/admin/payment-actions.php:45
+#: templates/admin/action-buttons.php:23
+#: templates/admin/payment-actions.php:45
 msgid "Cancel Payment"
-msgstr "Avbryt Betalning"
+msgstr ""
 
 #: templates/admin/payment-actions.php:12
 msgid "Payment Info"
-msgstr "Betalinformation"
+msgstr ""
 
 #: templates/admin/payment-actions.php:14
 msgid "Number"
-msgstr "Siffra"
+msgstr ""
 
 #: templates/admin/payment-actions.php:17
 msgid "Instrument"
-msgstr "Instrument"
+msgstr ""
 
 #: templates/admin/payment-actions.php:20
 msgid "Operation"
-msgstr "Moment"
+msgstr ""
 
 #: templates/admin/payment-actions.php:24
 msgid "Intent"
-msgstr "Avsikt"
+msgstr ""
 
 #: templates/admin/payment-actions.php:28
 msgid "State"
-msgstr "Tillstånd"
-
-#, fuzzy, php-format
-#~| msgid "Failed to charge \"%s\". %s."
-#~ msgid "Failed to charge \"%1$s\". %2$s."
-#~ msgstr "Misslyckades att debitera  \"%s\". %s."
-
-#, php-format
-#~ msgid "%1$s ending in %2$s"
-#~ msgstr "%1$s slutar i %2$s"
-
-#, fuzzy, php-format
-#~| msgid "Order #%s"
-#~ msgid "Order #%1$s"
-#~ msgstr "Beställ %s"
-
-#, php-format
-#~ msgid "Transaction failed. Reason: %s."
-#~ msgstr "Transaktionen misslyckades. Anledning: %s."
-
-#~ msgid "Transaction pending."
-#~ msgstr "Transaktionen är pågående."
-
-#~ msgid "Payment authorized."
-#~ msgstr "Betalningen är auktoriserad."
-
-#~ msgid "Transaction captured."
-#~ msgstr "Transaktionen fångades."
-
-#~ msgid "Transaction cancelled."
-#~ msgstr "Betalningen har avbrutits."
-
-#~ msgid "Verification of Credit Card"
-#~ msgstr "Verifiering av kreditkort"
-
-#~ msgid "Capture unavailable"
-#~ msgstr "Det går inte att fånga ordern, kanske för att den redan är fångad?"
-
-#~ msgid "Capture failed."
-#~ msgstr "Vi försökte fånga ordern men misslyckades."
-
-#~ msgid "Cancellation unavailable"
-#~ msgstr "Det går inte att avbryta betalningen"
-
-#~ msgid "Cancel failed."
-#~ msgstr "Vi misslyckades med att avbryta betalningen."
-
-#~ msgid "Refund unavailable"
-#~ msgstr "Återbetalning ej tillgänglig"
-
-#, php-format
-#~ msgid "Refunded: %s. Reason: %s"
-#~ msgstr "Återbetalades: %s. Anöedning: %s"
-
-#~ msgid "Refund failed."
-#~ msgstr "Återbetalningen misslyckades."
-
-#~ msgid "Payment aborted"
-#~ msgstr "Betalningen aborterad"
-
-#~ msgid "Transaction failed."
-#~ msgstr "Transaktionen misslyckades."
-
-#~ msgid "Failed to perform payment"
-#~ msgstr "Misslyckades med att utföra betalning"
-
-#~ msgid "Unable to get payment instance."
-#~ msgstr "Det går inte att få betalningsinstans."
-
-#, php-format
-#~ msgid "Capture failure: %s"
-#~ msgstr "Fångningsfel: %s"
-
-#~ msgid "Capture action is not available."
-#~ msgstr "Capture-åtgärd är inte tillgänglig."
-
-#, php-format
-#~ msgid "Cancel failure: %s"
-#~ msgstr "Avbryt fel: %s"
-
-#~ msgid "Cancel action is not available."
-#~ msgstr "Avbryt åtgärd är inte tillgänglig."
-
-#, php-format
-#~ msgid "Refund failure: %s"
-#~ msgstr "Återbetalningsfel: %s"
-
-#~ msgid "Refund action is not available."
-#~ msgstr "Återbetalningsåtgärd är inte tillgänglig."
+msgstr ""

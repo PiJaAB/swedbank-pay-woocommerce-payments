@@ -1,542 +1,412 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Woocommerce Gateway SwedbankPay Checkout\n"
-"POT-Creation-Date: 2019-12-29 13:17+0600\n"
-"PO-Revision-Date: 2019-12-29 13:18+0600\n"
+"POT-Creation-Date: 2020-07-23 10:18+0200\n"
+"PO-Revision-Date: 2020-07-23 10:18+0200\n"
 "Last-Translator: aait <info@aait.se>\n"
 "Language-Team: \n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.4\n"
 "X-Poedit-KeywordsList: __;_e;_e(sprintf;__(sprintf\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../includes/abstracts/abstract-wc-payment-gateway-swedbank-pay.php:286
-#: ../includes/abstracts/abstract-wc-payment-gateway-swedbank-pay.php:355
-msgid "Discount"
-msgstr ""
-
-#: ../includes/abstracts/abstract-wc-payment-gateway-swedbank-pay.php:581
-#: ../includes/abstracts/abstract-wc-payment-gateway-swedbank-pay.php:661
-#, php-format
-msgid "Transaction failed. Reason: %s."
-msgstr ""
-
-#: ../includes/abstracts/abstract-wc-payment-gateway-swedbank-pay.php:588
-#: ../includes/abstracts/abstract-wc-payment-gateway-swedbank-pay.php:668
-msgid "Transaction pending."
-msgstr ""
-
-#: ../includes/abstracts/abstract-wc-payment-gateway-swedbank-pay.php:603
-msgid "Payment authorized."
-msgstr ""
-
-#: ../includes/abstracts/abstract-wc-payment-gateway-swedbank-pay.php:637
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:409
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:441
-msgid "There was a problem adding the card."
-msgstr ""
-
-#: ../includes/abstracts/abstract-wc-payment-gateway-swedbank-pay.php:677
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:982
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:513
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:447
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:376
-msgid "Transaction captured."
-msgstr ""
-
-#: ../includes/abstracts/abstract-wc-payment-gateway-swedbank-pay.php:695
-#: ../includes/abstracts/abstract-wc-payment-gateway-swedbank-pay.php:697
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:1050
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:1052
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:581
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:583
-msgid "Transaction cancelled."
-msgstr ""
-
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:72
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:191
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:197
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:117
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:270
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:279
 msgid "Credit Card"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:182
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:120
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:123
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:109
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:258
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:138
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:130
+#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:116
 msgid "Enable/Disable"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:184
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:122
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:125
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:111
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:260
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:140
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:132
+#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:118
 msgid "Enable plugin"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:188
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:126
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:129
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:115
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:264
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:144
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:136
+#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:122
 msgid "Title"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:190
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:128
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:131
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:117
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:267
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:147
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:139
+#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:125
 msgid "This controls the title which the user sees during checkout."
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:194
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:132
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:135
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:121
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:273
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:153
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:145
+#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:131
 msgid "Description"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:196
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:134
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:137
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:123
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:276
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:156
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:148
+#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:134
 msgid "This controls the description which the user sees during checkout."
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:200
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:202
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:138
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:140
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:141
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:143
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:127
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:129
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:282
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:284
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:162
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:164
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:154
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:156
+#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:140
+#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:142
 msgid "Merchant Token"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:206
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:208
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:144
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:146
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:147
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:149
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:133
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:135
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:288
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:290
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:168
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:170
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:160
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:162
+#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:146
+#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:148
 msgid "Payee Id"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:212
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:214
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:150
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:152
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:153
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:155
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:139
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:141
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:294
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:296
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:174
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:176
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:166
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:168
+#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:152
+#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:154
 msgid "Subsite"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:218
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:156
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:159
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:145
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:300
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:180
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:172
+#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:158
 msgid "Test Mode"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:220
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:158
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:161
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:147
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:302
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:182
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:174
+#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:160
 msgid "Enable Swedbank Pay Test Mode"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:224
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:162
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:165
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:151
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:306
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:186
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:178
+#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:164
 msgid "Debug"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:226
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:164
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:167
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:194
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:153
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:308
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:188
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:180
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:210
+#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:166
 msgid "Enable logging"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:230
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:168
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:171
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:157
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:312
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:192
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:184
+#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:170
 msgid "Language"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:237
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:175
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:178
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:164
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:320
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:200
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:192
+#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:178
 msgid "Language of pages displayed by Swedbank Pay during payment."
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:241
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:326
 msgid "Auto Capture"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:243
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:328
 msgid "Enable Auto Capture"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:247
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:332
 #, fuzzy
 #| msgid "Save Changes"
 msgid "Save CC"
 msgstr "Spara ändringar"
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:249
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:334
 msgid "Enable Save CC feature"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:253
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:255
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:179
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:181
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:199
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:201
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:168
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:170
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:338
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:340
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:206
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:208
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:215
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:217
+#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:184
+#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:186
 msgid "Terms & Conditions Url"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:259
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:261
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:344
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:346
 msgid "Reject Credit Cards"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:265
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:267
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:350
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:352
 msgid "Reject Debit Cards"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:271
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:273
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:356
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:358
 msgid "Reject Consumer Cards"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:277
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:279
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:362
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:364
 msgid "Reject Corporate Cards"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:356
-msgid "Verification of Credit Card"
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:487
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:516
+#: ../vendor/swedbank-pay/swedbank-pay-woocommerce-core/src/SwedbankPay/Core/Adapter/WC_Adapter.php:564
+msgid "There was a problem adding the card."
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:446
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:521
 msgid "Payment method successfully added."
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:486
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:572
 msgid "Failed to load token."
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:493
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:579
 msgid "Access denied."
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:531
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:616
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:1364
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:308
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:295
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:264
-#, php-format
-msgid "Order #%s"
-msgstr ""
-
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:583
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:681
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:610
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:663
 msgid "Customer has been redirected to Swedbank Pay."
 msgstr "Kunden har skickats till Swedbank Pay."
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:594
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:762
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:624
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:744
 msgid "Payment method was updated."
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:768
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:769
 msgid "Payment failed."
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:772
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:776
 msgid "Payment canceled."
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:953
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:483
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:419
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:348
-msgid "Capture unavailable"
-msgstr ""
-
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:987
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:518
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:452
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:381
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:1204
 #, php-format
-msgid "Transaction capture status: %s."
+msgid "Failed to charge \"%1$s\". %2$s."
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:991
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:522
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:456
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:385
-msgid "Capture failed."
-msgstr ""
-
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:1024
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:555
-msgid "Cancellation unavailable"
-msgstr ""
-
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:1057
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:589
+#: ../includes/class-wc-gateway-swedbank-pay-cc.php:1233
 #, php-format
-msgid "Transaction cancellation status: %s."
+msgid "Via %1$s card ending in %2$s/%3$s"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:1061
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:593
-msgid "Cancel failed."
-msgstr ""
-
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:1096
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:628
-msgid "Refund unavailable"
-msgstr ""
-
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:1122
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:653
-#, php-format
-msgid "Refunded: %s. Reason: %s"
-msgstr ""
-
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:1126
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:657
-#, php-format
-msgid "Transaction reversal status: %s."
-msgstr ""
-
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:1130
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:661
-msgid "Refund failed."
-msgstr ""
-
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:1171
-msgid "Payment aborted"
-msgstr ""
-
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:1420
-msgid "Transaction failed."
-msgstr ""
-
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:1446
-msgid "Failed to perform payment"
-msgstr ""
-
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:1451
-#, php-format
-msgid "Failed to charge \"%s\". %s."
-msgstr ""
-
-#: ../includes/class-wc-gateway-swedbank-pay-cc.php:1475
-#, php-format
-msgid "Via %s card ending in %s/%s"
-msgstr ""
-
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:54
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:129
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:135
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:55
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:150
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:159
 msgid "Invoice"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:195
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:222
 msgid "Social Security Number"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:213
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:239
 msgid "Please specify country."
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:219
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:245
 msgid "Please specify postcode."
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:225
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:252
 msgid "This country is not supported by the payment system."
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:234
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:265
 msgid "Invalid phone number. Phone code must include country phone code."
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:241
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:278
 msgid "Please enter your Social Security Number and confirm your order."
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:66
+#: ../includes/class-wc-gateway-swedbank-pay-invoice.php:534
+#: ../vendor/swedbank-pay/swedbank-pay-woocommerce-core/src/SwedbankPay/Core/Adapter/WC_Adapter.php:274
+#: ../vendor/swedbank-pay/swedbank-pay-woocommerce-core/src/SwedbankPay/Core/Adapter/WC_Adapter.php:649
+msgid "Discount"
+msgstr ""
+
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:67
 msgid "Swish"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:132
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:138
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:142
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:151
 msgid "Swish payment"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:182
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:188
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:198
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:204
 msgid "Checkout Method"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:185
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:201
 msgid "Redirect"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:186
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:202
 msgid "Direct"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:192
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:208
 msgid "Ecom Only"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:195
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:211
 msgid "If enabled then trigger the redirect payment scenario by default"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:224
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:193
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:240
+#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:209
 msgid "Phone number required."
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:230
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:246
 #, fuzzy
 #| msgid "Input your number like this +47xxxxxxxxx"
 msgid "Input your number like this +46xxxxxxxxx"
 msgstr "Vennligst skriv inn ditt telefonnummer på følgende format +47"
 
-#: ../includes/class-wc-gateway-swedbank-pay-swish.php:379
+#: ../includes/class-wc-gateway-swedbank-pay-swish.php:321
 msgid "Wrong method"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:54
+#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:55
 msgid "Vipps"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:118
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:124
+#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:128
+#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:137
 msgid "Vipps payment"
 msgstr ""
 
-#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:199
+#: ../includes/class-wc-gateway-swedbank-pay-vipps.php:215
 msgid "Input your number like this +47xxxxxxxxx"
 msgstr "Vennligst skriv inn ditt telefonnummer på følgende format +47"
 
-#: ../includes/class-wc-payment-token-swedbank-pay.php:182
+#: ../includes/class-wc-payment-token-swedbank-pay-base.php:175
 #, php-format
 msgid "%1$s ending in %2$s"
 msgstr ""
 
-#: ../includes/class-wc-swedbank-pay-icon.php:40
+#: ../includes/class-wc-swedbank-pay-icon.php:41
 msgid "Checkout Icon"
 msgstr ""
 
-#: ../includes/class-wc-swedbank-pay-icon.php:42
+#: ../includes/class-wc-swedbank-pay-icon.php:43
 msgid "Enter an image URL to change the icon."
 msgstr ""
 
-#: ../includes/class-wc-swedbank-pay-transactions.php:200
+#: ../includes/class-wc-swedbank-pay-transactions.php:211
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
-#: ../includes/functions-swedbank-pay.php:192
-#: ../includes/functions-swedbank-pay.php:224
-#: ../includes/functions-swedbank-pay.php:258
-msgid "Unable to get payment instance."
-msgstr ""
-
-#: ../includes/functions-swedbank-pay.php:196
+#: ../includes/class-wc-swedbank-plugin.php:251
+#: ../includes/class-wc-swedbank-plugin.php:268
 #, php-format
-msgid "Capture failure: %s"
+msgid "Order status rollback. %1$s"
 msgstr ""
 
-#: ../includes/functions-swedbank-pay.php:200
-msgid "Capture action is not available."
-msgstr ""
-
-#: ../includes/functions-swedbank-pay.php:228
-#, php-format
-msgid "Cancel failure: %s"
-msgstr ""
-
-#: ../includes/functions-swedbank-pay.php:232
-msgid "Cancel action is not available."
-msgstr ""
-
-#: ../includes/functions-swedbank-pay.php:262
-#, php-format
-msgid "Refund failure: %s"
-msgstr ""
-
-#: ../includes/functions-swedbank-pay.php:266
-msgid "Refund action is not available."
-msgstr ""
-
-#: ../swedbank-pay-woocommerce-payments.php:136
-msgid "Settings"
-msgstr ""
-
-#: ../swedbank-pay-woocommerce-payments.php:259
-#: ../swedbank-pay-woocommerce-payments.php:274
-#, php-format
-msgid "Order status rollback. %s"
-msgstr ""
-
-#: ../swedbank-pay-woocommerce-payments.php:296
+#: ../includes/class-wc-swedbank-plugin.php:305
 msgid "Swedbank Pay Payments Actions"
 msgstr ""
 
-#: ../swedbank-pay-woocommerce-payments.php:390
+#: ../includes/class-wc-swedbank-plugin.php:407
 msgid "Please wait..."
 msgstr ""
 
-#: ../swedbank-pay-woocommerce-payments.php:411
+#: ../includes/class-wc-swedbank-plugin.php:434
 msgid "Capture success."
 msgstr ""
 
-#: ../swedbank-pay-woocommerce-payments.php:430
+#: ../includes/class-wc-swedbank-plugin.php:460
 msgid "Cancel success."
 msgstr ""
 
-#: ../templates/admin/action-buttons.php:16
-#: ../templates/admin/payment-actions.php:28
+#: ../swedbank-pay-woocommerce-payments.php:67
+msgid "Settings"
+msgstr ""
+
+#: ../swedbank-pay-woocommerce-payments.php:86
+#: ../swedbank-pay-woocommerce-payments.php:122
+#: ../swedbank-pay-woocommerce-payments.php:125
+msgid "Manual Processing"
+msgstr ""
+
+#: ../swedbank-pay-woocommerce-payments.php:162
+msgid "There are orders requiring manual processing."
+msgstr ""
+
+#: ../swedbank-pay-woocommerce-payments.php:163
+msgid ""
+"One or more orders are marked for manual processing. Please verify their "
+"payment status as soon as possible."
+msgstr ""
+
+#: ../swedbank-pay-woocommerce-payments.php:164
+msgid "List of relevant orders:"
+msgstr ""
+
+#: ../templates/admin/action-buttons.php:14
+#: ../templates/admin/payment-actions.php:36
 msgid "Capture Payment"
 msgstr ""
 
-#: ../templates/admin/action-buttons.php:25
-#: ../templates/admin/payment-actions.php:37
+#: ../templates/admin/action-buttons.php:23
+#: ../templates/admin/payment-actions.php:45
 msgid "Cancel Payment"
 msgstr ""
 
-#: ../templates/admin/payment-actions.php:13
+#: ../templates/admin/payment-actions.php:12
 msgid "Payment Info"
 msgstr ""
 
-#: ../templates/admin/payment-actions.php:15
+#: ../templates/admin/payment-actions.php:14
 msgid "Number"
 msgstr ""
 
@@ -544,12 +414,25 @@ msgstr ""
 msgid "Instrument"
 msgstr ""
 
-#: ../templates/admin/payment-actions.php:19
+#: ../templates/admin/payment-actions.php:20
+msgid "Operation"
+msgstr ""
+
+#: ../templates/admin/payment-actions.php:24
 msgid "Intent"
 msgstr ""
 
-#: ../templates/admin/payment-actions.php:21
+#: ../templates/admin/payment-actions.php:28
 msgid "State"
+msgstr ""
+
+#: ../vendor/swedbank-pay/swedbank-pay-woocommerce-core/src/SwedbankPay/Core/Adapter/WC_Adapter.php:229
+msgid "Shipping"
+msgstr "Leverans"
+
+#: ../vendor/swedbank-pay/swedbank-pay-woocommerce-core/src/SwedbankPay/Core/Adapter/WC_Adapter.php:318
+#, php-format
+msgid "Order #%1$s"
 msgstr ""
 
 #~ msgid "Factoring Fee"
@@ -579,11 +462,12 @@ msgstr ""
 #~ msgid "Invalid Organization Number"
 #~ msgstr "Ogiltigt organisations nummer"
 
-#~ msgid "Shipping"
-#~ msgstr "Leverans"
-
-#~ msgid "You will be redirected to <a target=\"_blank\" href=\"%s\">SwedbankPay</a> website when you place an order."
-#~ msgstr "Du kommer att skickas till <a target=\"_blank\" href=\"%s\">SwedbankPay</a> hemsida när du har placerat din order"
+#~ msgid ""
+#~ "You will be redirected to <a target=\"_blank\" href=\"%s\">SwedbankPay</"
+#~ "a> website when you place an order."
+#~ msgstr ""
+#~ "Du kommer att skickas till <a target=\"_blank\" href=\"%s\">SwedbankPay</"
+#~ "a> hemsida när du har placerat din order"
 
 #~ msgid "Financing Invoice"
 #~ msgstr "Faktura"

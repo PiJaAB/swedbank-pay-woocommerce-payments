@@ -1131,7 +1131,7 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 				if ( ! $token->get_id() ) {
 					throw new Exception( 'Invalid Token Id' );
 				}
-
+				
 				if ($token->get_type() !== 'Swedbank_Pay_Legacy') {
 					$payment_token    = $token->get_token();
 					$recurrence_token = $token->get_recurrence_token();
@@ -1195,7 +1195,7 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 				break;
 			}
 		} catch ( \Exception $e ) {
-			$renewal_order->update_status( 'failed' );
+			$renewal_order->update_status( 'manual-processing' );
 			$renewal_order->add_order_note(
 				sprintf(
 					/* translators: 1: amount 2: error */                    __( 'Failed to charge "%1$s". %2$s.', 'woocommerce' ),
