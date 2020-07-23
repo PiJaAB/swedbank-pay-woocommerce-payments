@@ -1141,8 +1141,8 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 
 				$result     = $this->core->initiateCreditCardRecur(
 					$renewal_order->get_id(),
-					$payment_token,
-					$recurrence_token
+					$recurrence_token,
+					$payment_token
 				);
 				$payment_id = $result['payment']['id'];
 
