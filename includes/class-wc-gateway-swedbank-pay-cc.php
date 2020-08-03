@@ -662,6 +662,11 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 		// Redirect
 		$order->add_order_note( __( 'Customer has been redirected to Swedbank Pay.', 'swedbank-pay-woocommerce-payments' ) );
 
+		if ($order->has_status( 'failed' )) {
+			$order->set_status('pending');
+			$order->save();
+		}
+
 		return array(
 			'result'   => 'success',
 			'redirect' => $result->getOperationByRel( 'redirect-authorization' ),

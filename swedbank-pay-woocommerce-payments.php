@@ -131,7 +131,7 @@ class WC_Swedbank_Pay extends WC_Swedbank_Plugin {
 	 * Add Manual Processing status
 	 */
 	public function order_status_needs_payment( $order_statuses ) {
-		$order_statuses[] = 'manual-processing';
+		if ( !is_checkout() && !wcs_is_view_subscription_page() ) $order_statuses[] = 'manual-processing';
 		return $order_statuses;
 	}
 
