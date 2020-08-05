@@ -551,6 +551,22 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 		return apply_filters( 'woocommerce_get_return_url', $return_url, $order );
 	}
 
+	public function update_subscription_payment_token( $order, $token) {
+		if ( ! function_exists( 'wcs_get_subscriptions_for_order' ) ) {
+			return;
+		}
+		if ( empty( $token ) || ! ( $token instanceof WC_Payment_Token ) ) {
+				return;
+		}
+
+		$subscriptions = wcs_get_subscriptions_for_order( $order, array( 'order_type' => 'any' ) );
+		foreach ( $subscriptions as $subscription ) {
+			delete_post_meta($subscription, '_payment_tokens');
+			$subscription->add_payment_token( $token->get_id() );
+			$subscription->save_meta_data();
+		}
+	}
+
 	/**
 	 * Process Payment
 	 *
@@ -597,6 +613,7 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 					return false;
 				}
 
+				delete_post_meta( $order->get_id(), '_payment_tokens' );
 				$order->update_meta_data( '_payex_generate_token', '1' );
 				$order->update_meta_data( '_payex_replace_token', '1' );
 
@@ -623,6 +640,7 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 
 				wc_add_notice( __( 'Payment method was updated.', 'swedbank-pay-woocommerce-payments' ) );
 				$order->payment_complete();
+				$this->update_subscription_payment_token($order, $token);
 				return array(
 					'result'   => 'success',
 					'redirect' => $this->get_return_url( $order ),
@@ -645,6 +663,8 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 			return false;
 		}
 
+		delete_post_meta( $order->get_id(), '_payment_tokens' );
+
 		// Add payment token
 		if ( $token->get_id() ) {
 			$order->add_payment_token( $token );
@@ -653,6 +673,7 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 		// Generate Token flag
 		if ( $generate_token ) {
 			$order->update_meta_data( '_payex_generate_token', '1' );
+			$order->update_meta_data( '_payex_replace_token', '1' );
 		}
 
 		// Save payment ID
@@ -691,6 +712,7 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 		if ( ! $order ) {
 			return;
 		}
+		$user = $order->get_user();
 
 		if ( ! in_array( $order->get_payment_method(), WC_Swedbank_Pay::PAYMENT_METHODS, true ) ) {
 			return;
@@ -735,7 +757,7 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 						$token->set_expiry_year( $expiry_date[1] );
 						$token->set_expiry_month( $expiry_date[0] );
 						$token->set_card_type( strtolower( $card_brand ) );
-						$token->set_user_id( get_current_user_id() );
+						$token->set_user_id( $user ? $user->get_id() : get_current_user_id() );
 						$token->set_masked_pan( $masked_pan );
 
 						// Save Credit Card
@@ -760,8 +782,9 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 							if ( ! $order_stock_reduced ) {
 								wc_reduce_stock_levels( $order->get_id() );
 							}
-		
+
 							$order->payment_complete( $transaction['number'] );
+							$this->update_subscription_payment_token($order, $token);
 						}
 
 						break;

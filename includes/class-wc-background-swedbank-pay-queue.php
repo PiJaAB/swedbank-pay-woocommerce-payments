@@ -5,6 +5,7 @@ namespace SwedbankPay\Payments\WooCommerce;
 use SwedbankPay\Core\Order;
 use SwedbankPay\Core\OrderInterface;
 use SwedbankPay\Core\Api\Transaction;
+use SwedbankPay\Core\Api\TransactionInterface;
 use WC_Background_Process;
 use WC_Logger;
 
@@ -71,7 +72,8 @@ class WC_Background_Swedbank_Pay_Queue extends WC_Background_Process {
 			$this->log( 'Acquired file lock' );
 			return parent::lock_process();
 		} else {
-			throw new Exception ( 'Couldn\'t get the lock. Possible the queue is already running?' );
+			fclose($this->fp);
+			throw new \Exception ( 'Couldn\'t get the lock. Possible the queue is already running?' );
 		}
 	}
 
@@ -268,26 +270,75 @@ class WC_Background_Swedbank_Pay_Queue extends WC_Background_Process {
 
 						// Save Payment Token
 						if ($SwedbankOrder->needsSaveToken()) {
-								$verifications = $gateway->core->fetchVerificationList($SwedbankOrder->getPaymentId());
-								foreach ($verifications as $verification) {
-										if ($verification->getPaymentToken() || $verification->getRecurrenceToken()) {
-												// Add payment token
-												$gateway->adapter->savePaymentToken(
-														$SwedbankOrder->getCustomerId(),
-														$verification->getPaymentToken(),
-														$verification->getRecurrenceToken(),
-														$verification->getCardBrand(),
-														$verification->getMaskedPan(),
-														$verification->getExpireDate(),
-														$SwedbankOrder->getOrderId()
-												);
+							$verifications = $gateway->core->fetchVerificationList($SwedbankOrder->getPaymentId());
+							foreach ($verifications as $verification) {
+								if ($verification->getPaymentToken() || $verification->getRecurrenceToken()) {
+										// Add payment token
+										$gateway->adapter->savePaymentToken(
+												$SwedbankOrder->getCustomerId(),
+												$verification->getPaymentToken(),
+												$verification->getRecurrenceToken(),
+												$verification->getCardBrand(),
+												$verification->getMaskedPan(),
+												$verification->getExpireDate(),
+												$SwedbankOrder->getOrderId()
+										);
 
-												// Use the first item only
-												break;
-										}
+										// Use the first item only
+										break;
 								}
+							}
 						}
 					}
+				} elseif ($transaction->getType() === TransactionInterface::TYPE_CAPTURE || $transaction->getType() === TransactionInterface::TYPE_SALE) {
+					if (
+						!$transaction->isFailed()
+						&& !$transaction->isPending()
+						&& $SwedbankOrder->needsSaveToken()
+					) {
+						// Save Payment Token
+						$verifications = $gateway->core->fetchVerificationList($SwedbankOrder->getPaymentId());
+						foreach ($verifications as $verification) {
+							if ($verification->getPaymentToken() || $verification->getRecurrenceToken()) {
+								// Add payment token
+								$gateway->adapter->savePaymentToken(
+										$SwedbankOrder->getCustomerId(),
+										$verification->getPaymentToken(),
+										$verification->getRecurrenceToken(),
+										$verification->getCardBrand(),
+										$verification->getMaskedPan(),
+										$verification->getExpireDate(),
+										$SwedbankOrder->getOrderId()
+								);
+
+								// Use the first item only
+								break;
+							}
+						}
+						$order = wc_get_order( $order ); // Refresh the order
+					}
+					$payment_tokens = $order->get_payment_tokens();
+					$this->log( sprintf( '[INFO]: Maybe update payment tokens: %s', $payment_tokens && count($payment_tokens) > 0 && function_exists( 'wcs_get_subscriptions_for_order' ) ? 'yes' : 'no' ) );
+					if ($payment_tokens && count($payment_tokens) > 0 && function_exists( 'wcs_get_subscriptions_for_order' )) {
+						$subscriptions = wcs_get_subscriptions_for_order( $order, array( 'order_type' => 'any' ) );
+						$this->log( sprintf( '[INFO]: Subscription count: %s', $subscriptions ? count($subscriptions) : 0 ) );
+						foreach ( $subscriptions as $subscription ) {
+							$old_payment_tokens = $subscription->get_payment_tokens();
+							$identical = $old_payment_tokens && count($old_payment_tokens) === count($payment_tokens);
+							if ($identical) {
+								foreach ($payment_tokens as $token) {
+									$identical = in_array($old_payment_tokens, $token);
+									if (!$identical) break;
+								}
+							}
+							$this->log( sprintf( '[INFO]: Updating payment tokens: %s', !$identical ? 'yes' : 'no' ) );
+							if (!$identical) {
+								$this->log( sprintf( '[INFO]: Updating subscription: %s, new tokens: %s', $subscription->get_id(), implode(',', $payment_tokens)) );
+								update_post_meta($subscription->get_id(), '_payment_tokens', $payment_tokens );
+							}
+						}
+					}
+					$gateway->core->processTransaction( $order->get_id(), $transaction );
 				} else {
 					$gateway->core->processTransaction( $order->get_id(), $transaction );
 				}

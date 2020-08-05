@@ -275,4 +275,50 @@ class WC_Patched_Adapter extends WC_Adapter
         die();*/
         return $ret;
     }
+
+    /**
+     * Save Payment Token.
+     *
+     * @param mixed $customer_id
+     * @param string $payment_token
+     * @param string $recurrence_token
+     * @param string $card_brand
+     * @param string $masked_pan
+     * @param string $expiry_date
+     * @param mixed|null $order_id
+     */
+    public function savePaymentToken(
+      $customer_id,
+      $payment_token,
+      $recurrence_token,
+      $card_brand,
+      $masked_pan,
+      $expiry_date,
+      $order_id = null
+  ) {
+      $expiry_date = explode('/', $expiry_date);
+
+      // Create Payment Token
+      $token = new WC_Payment_Token_Swedbank_Pay();
+      $token->set_gateway_id($this->gateway->id);
+      $token->set_token($payment_token);
+      $token->set_recurrence_token($recurrence_token);
+      $token->set_last4(substr($masked_pan, -4));
+      $token->set_expiry_year($expiry_date[1]);
+      $token->set_expiry_month($expiry_date[0]);
+      $token->set_card_type(strtolower($card_brand));
+      $token->set_user_id($customer_id);
+      $token->set_masked_pan($masked_pan);
+      $token->save();
+      if (!$token->get_id()) {
+          throw new \Exception(__('There was a problem adding the card.', 'swedbank-pay-woocommerce-payments'));
+      }
+
+      // Add payment token
+      if ($order_id) {
+          $order = wc_get_order($order_id);
+          $order->add_payment_token($token);
+          $order->save_meta_data();
+      }
+  }
 }
