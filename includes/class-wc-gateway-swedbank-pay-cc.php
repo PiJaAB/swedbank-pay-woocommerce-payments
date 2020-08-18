@@ -1255,10 +1255,13 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 			}
 
 			return sprintf(
-				/* translators: 1: pan 2: month 3: year */                __( 'Via %1$s card ending in %2$s/%3$s', 'swedbank-pay-woocommerce-payments' ),
-				$token->get_masked_pan(),
-				$token->get_expiry_month(),
-				$token->get_expiry_year()
+				// translators: 1: Card image url 2: card type 3: pan 4: month 5: year
+				__( '<span style="display:inline-flex;align-items:center;" title="%2$s: %3$s - %4$s/%5$s"><img src="%1$s" alt="%2$s">%3$s</span>', 'swedbank-pay-woocommerce-payments' ),
+				WC_HTTPS::force_https_url( WC()->plugin_url() . '/assets/images/icons/credit-cards/' . $token->get_card_type() . '.png' ),
+				esc_html($token->get_card_type()),
+				esc_html($token->get_masked_pan()),
+				esc_html($token->get_expiry_month()),
+				esc_html(substr($token->get_expiry_year(), -2))
 			);
 		}
 
