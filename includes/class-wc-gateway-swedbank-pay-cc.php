@@ -529,6 +529,33 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 		}
 	}
 
+	private function abortOldPayment($order) {
+		$payment_id = $order->get_meta( '_payex_payment_id' );
+		if (empty($payment_id)) {
+			return false;
+		}
+
+		// @todo Check if order has been paid
+		$href = $this->core->fetchPaymentInfo($payment_id)->getOperationByRel('update-payment-abort');
+		if (empty($href)) {
+				return false;
+		}
+
+		$params = [
+				'payment' => [
+						'operation' => 'Abort',
+						'abortReason' => 'CancelledByConsumer'
+				]
+		];
+		$result = $this->core->request('PATCH', $href, $params);
+
+		if ($result['payment']['state'] === 'Aborted') {
+			$order->delete_meta_data('_payex_payment_id');
+			return true;
+		}
+		throw new Exception('Failed to abort previous abortable payment. Refusing to continue..');
+	}
+
 	/**
 	 * Thank you page
 	 *
@@ -597,6 +624,15 @@ class WC_Gateway_Swedbank_Pay_Cc extends WC_Payment_Gateway {
 				return false;
 			}
 			$generate_token = false;
+		}
+
+		if ($this->abortOldPayment($order)) {
+			$order->add_order_note(
+				__(
+					'Aborted previous pending payment.',
+					'swedbank-pay-woocommerce-payments'
+				)
+			);
 		}
 
 		// Change Payment Method
